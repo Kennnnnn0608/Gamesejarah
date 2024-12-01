@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pertahanan Indonesia</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #1e1e1e;
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        #game-container {
+            /* Wadah utama permainan */
+            position: relative;
+            padding: 30px;
+            background-color: #34495e;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.7);
+            text-align: center;
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Header */
+        h1 {
+            /* Judul permainan */
+            font-size: 36px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            color: #ecf0f1;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Tutorial Box */
+        #tutorial {
+            /* Area petunjuk bermain */
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #ecf0f1;
+            padding: 25px;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 350px;
+            margin: 0 auto 20px auto;
+            font-size: 16px;
+            line-height: 1.5;
+            text-align: left;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
+        }
+
+        #tutorial h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #e74c3c;
+        }
+
+        /* Buttons */
+        #start-button, #pause-button, #home-button {
+            /* Gaya tombol untuk kontrol permainan */
+            display: block;
+            margin: 10px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        #start-button:hover, #pause-button:hover, #home-button:hover {
+            /* Efek hover tombol */
+            background-color: #2ecc71;
+            transform: scale(1.05);
+        }
+
+        #start-button:active, #pause-button:active, #home-button:active {
+            /* Efek saat tombol ditekan */
+            background-color: #16a085;
+        }
+
+        /* Canvas */
+        canvas {
+            /* Area tempat permainan digambar */
+            background-color: #2c3e50;
+            border: 2px solid white;
+            display: block;
+            border-radius: 10px;
+            margin: 20px 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Score Display */
+        #score {
+            /* Teks untuk menampilkan skor pemain */
+            font-size: 20px;
+            font-weight: bold;
+            color: #ecf0f1;
+            margin-top: 10px;
+        }
+
+        /* Hidden Message */
+        #win-message {
+            /* Pesan kemenangan */
+            font-size: 30px;
+            color: #ecf0f1;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+            display: none; /* Awalnya disembunyikan */
+        }
+
+        /* Images */
+        .enemy {
+            /* Gaya untuk musuh dalam permainan */
+            width: 50px;
+            height: 50px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="game-container">
+        <!-- Kontainer utama permainan -->
+        <h1>Pertahanan Indonesia</h1> <!-- Judul permainan -->
+        <div id="tutorial">
+            <!-- Area petunjuk bermain -->
+            <h2>Petunjuk Bermain:</h2>
+            <p><strong>Gerakan:</strong> Gunakan tombol panah kiri dan kanan untuk menggerakkan pemain.</p>
+            <p><strong>Menembak:</strong> Tekan tombol <strong>spasi</strong> untuk menembakkan peluru.</p>
+            <p><strong>Tujuan:</strong> Hancurkan musuh yang muncul dan capai skor 20 untuk menang.</p>
+            <p><strong>Kekalahan:</strong> Jika skor mencapai -30, permainan akan berakhir.</p>
+        </div>
+
+        <!-- Tombol aksi permainan -->
+        <button id="start-button">Mulai Permainan</button> <!-- Tombol untuk memulai permainan -->
+        <button id="pause-button" style="display:none;">Pause</button> <!-- Tombol untuk menjeda permainan -->
+        <button id="home-button" style="display:none;">Kembali ke Menu</button> <!-- Tombol kembali ke menu utama -->
+        
+        <!-- Kanvas untuk menggambar permainan -->
+        <canvas id="gameCanvas" width="800" height="600" style="display:none;"></canvas>
+        
+        <!-- Teks untuk menampilkan skor -->
+        <p id="score">Skor: 0</p>
+        
+        <!-- Pesan kemenangan -->
+        <div id="win-message">Kamu Menang!</div>
+    </div>
+    <!-- Menyertakan file JavaScript untuk logika permainan -->
+    <script src="game.js"></script>
+</body>
+</html>
